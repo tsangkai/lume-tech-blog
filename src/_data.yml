@@ -1,0 +1,13 @@
+home:
+  welcome: Hello, I am a person that writes stuff.
+
+menu_links: []
+
+# Metas plugin https://lume.land/plugins/metas/#description
+metas:
+  site: Tsang-Kai's blog
+  description: General description of the blog
+  title: "=title"
+  image: "=image"
+  twitter: "@username"
+  lang: zh-Hant

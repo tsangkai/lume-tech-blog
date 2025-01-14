@@ -1,0 +1,10 @@
+---
+layout: layouts/base.vto
+title: Home
+---
+
+{{ include "templates/post-list.vto" { postslist: search.pages("type=post", "date=desc", 5) } }}
+
+<hr>
+
+<p>{{ i18n.nav.archive }}</p>

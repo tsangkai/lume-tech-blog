@@ -1,0 +1,89 @@
+/* Lume's design system */
+@import "css/ds.css";
+
+/* Custom components */
+@import "css/variables.css";
+@import "css/badge.css";
+@import "css/navbar.css";
+@import "css/pagination.css";
+@import "css/post-list.css";
+@import "css/post.css";
+
+
+body {
+  font: var(--font-body);
+}
+
+/* Page layout */
+/*
+  - container
+    - navbar
+    - main
+    - footer
+*/
+
+.container {
+  max-width: min(100% - 25vw, 50rem); /* */
+  margin: 0 auto;
+  padding-top: var(--row-gap-large);
+  padding-bottom: var(--row-gap-large);
+
+  display: grid;
+  gap: var(--row-gap-medium);
+}
+
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  column-gap: var(--column-gap-medium);
+  row-gap: var(--row-gap-xsmall);
+
+  padding-bottom: var(--row-gap-large);
+}
+
+.navbar div:last-child {
+  margin-left: auto;
+}
+
+.main {
+  display: grid;
+  gap: 3rem;
+}
+
+.footer {
+  display: grid;
+  gap: 0.1rem;
+  justify-content: center;
+}
+
+.footer > p {
+  margin: 0;
+  letter-spacing: normal;
+  font: var(--font-xsmall);
+  color: var(--color-dim);
+}
+
+/* Content class */
+
+
+h1 {
+  font: var(--font-display);
+  letter-spacing: var(--font-display-spacing);
+  margin: 0;
+}
+
+/* Search tweak */
+.search {
+  margin-top: var(--row-gap-xsmall);
+}
+
+
+.book-img {
+  aspect-ratio: 2 / 3;
+  border-radius: 0.5em;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-line);
+}

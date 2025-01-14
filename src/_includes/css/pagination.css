@@ -1,0 +1,15 @@
+.pagination {
+  font: var(--font-ui);
+  border-top: solid 1px var(--color-line);
+  margin-top: var(--row-gap-medium);
+}
+
+.pagination a {
+  color: var(--color-dim);
+  display: block;
+}
+
+.pagination a:hover {
+  color: var(--color-dim);
+  text-decoration: none;
+}

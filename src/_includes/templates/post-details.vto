@@ -1,0 +1,19 @@
+<div class="post-details">
+  <p>
+    <time datetime="{{ date |> date('DATE') }}">
+      {{ date |> date('DATE') }}
+    </time>
+  </p>
+  
+  <hr class="bar">
+
+  <div class="post-tags">
+    {{ for tag of tags }}
+      {{ set page = search.page(`type=tag tag="${tag}"`) }}
+
+      {{ if page }}
+        <a data-pagefind-filter="filter" class="badge" href="{{ page.data.url }}">#  {{ tag }}</a>
+      {{ /if }}
+    {{ /for }}
+  </div>
+</div>

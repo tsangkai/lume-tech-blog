@@ -1,0 +1,134 @@
+.post > .post-header {
+  margin-bottom: var(--row-gap-small);
+  display: grid; 
+  gap: 1.5rem;
+}
+
+.post > .post-header > .post-header-img {
+  text-align: center;
+
+  img {
+    width: max(16vw, 160px);
+  }
+}
+
+.post-details {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: .5em;
+  align-items: center;
+  font: var(--font-xsmall);
+  color: var(--color-dim);
+
+  & p {
+    margin: 0;
+  }
+}
+
+.post-details > .bar {
+  flex: 1;
+  height: 1px;
+  margin: 0;
+  color: var(--color-line);
+}
+
+.post-tags {
+  display: flex;
+  flex-flow: row wrap;
+  gap: .5em;
+  align-items: center;
+}
+
+
+.post-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-body p:first-child {
+  margin-top: auto;
+}
+
+
+.post-body > a {  
+  color: var(--color-text);
+  font: var(--font-body);
+}
+
+.post-body > a:hover {
+  color: var(--color-primary);
+  font: var(--font-body);
+}
+
+.post-body > hr {  
+  margin: 1em 0;
+}
+
+.post-body > h1, h2 {  
+  margin: 1rem 0;
+}
+
+.post-body > h1, h2 > a {  
+  text-decoration: none;
+}
+
+.post-body > p {  
+  margin: 0.5rem 0;
+}
+
+.post-body > figure {
+  display: table;
+  align-self: center;
+  margin: 0;
+  max-width: min(100%, 30em);
+
+  margin: 0.5em 0;
+}
+
+.post-body > figure > img {
+  display: table-cell;
+  width: 100%;
+}
+
+.post-body > figure > figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  align-self: left;
+
+  font: var(--font-small);
+  color: var(--color-dim);
+}
+
+.post-body > blockquote {
+  border-left: 5px solid var(--color-line);
+  padding-left: 1rem;
+  margin-left: 1rem;
+}
+
+.post-body > .footnote {
+  margin-top: var(--row-gap-small);
+
+  & ul {
+    display: grid;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    gap: .3em;
+
+    font: var(--font-small);
+    color: var(--color-text);
+  }  
+}
+
+.post-body > a.footnote-ref {
+  font: var(--font-small);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.katex {
+  font-size: clamp(1.2rem, 1vw, 1.3rem);
+  line-height: 1.7;
+  color: var(--color-text);  
+}

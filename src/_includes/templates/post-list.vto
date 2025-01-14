@@ -1,0 +1,39 @@
+<section class="post-list">
+  {{ for post of postslist }}
+
+    {{ if post.data.img }}
+      <div class="post-card">
+        <div class="post-card-img">
+          <a href="{{ post.data.url }}" {{ if post.data.url == url }} aria-current="page"{{ /if }}>  
+            <img class="book-img" src="{{ post.data.img }}">
+          </a>
+        </div>
+    {{ else }}
+      <div class="post-card-no-img">
+    {{ /if }}
+
+      <div class="post-card-summary">
+        <h2 class="post-title">
+          <a href="{{ post.data.url }}" {{ if post.data.url == url }} aria-current="page"{{ /if }}>
+            {{ post.data.title || post.data.url }}
+          </a>
+        </h2>
+
+        {{ include "templates/post-details.vto" {
+          date: post.data.date,
+          tags: post.data.tags,
+          author: post.data.author,
+          readingTime: post.data.readingTime
+          } }}
+
+        <div class="post-body">
+          {{ post.data.excerpt |> md }}
+          <a href="{{ post.data.url }}" class="post-link">
+            {{ i18n.nav.continue_reading }}
+          </a>
+        </div>
+
+      </div>
+    </div>
+  {{ /for }}
+</section>

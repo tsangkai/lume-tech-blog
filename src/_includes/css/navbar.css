@@ -1,0 +1,17 @@
+.navbar-home {
+  text-decoration: none;
+  font: var(--font-display);
+}
+
+.navbar-link {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: var(--column-gap-small); /*1.5rem;*/
+  align-items: center;
+
+  font: bold var(--font-body);
+}
+
+.navbar-link > a {
+  text-decoration: none;
+}

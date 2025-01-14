@@ -1,0 +1,63 @@
+---
+layout: layouts/base.vto
+---
+<article class="post" data-title="{{ title }}">
+  <header class="post-header">
+
+    <h1>
+      {{ title }}
+    </h1>
+    
+    {{ if it.img }}
+      <div class="post-header-img">
+        <img class="book-img" src="{{ it.img }}">
+      </div>
+
+      {{# a hack now #}}
+      {{ include "templates/post-details.vto" }}
+    {{ /if }}
+
+  </header>
+
+  <div class="post-body">
+    {{ content }}
+
+    {{- if footnotes.length }}
+    <div class="footnote">
+      <h2>Footnotes</h2>
+      <ul>
+        {{ for note of footnotes }}
+        <li id={{ note.label }}>
+          {{- note.label -}}. {{note.content |> replace('<p>', '') |> replace('</p>', '') }}
+        </li>
+        {{ /for }}
+      </ul>  
+    </div>
+    {{ /if }}
+  </div>
+
+</article>
+
+<nav class="pagination">
+  <ul>
+    {{- set previousPost = search.previousPage(url, "type=post") }}
+    {{- if previousPost }}
+    <li class="pagination-prev">
+      <a href="{{ previousPost.data.url }}" rel="prev">
+        <span>{{ i18n.nav.previous_post }}</span>
+        <strong>{{ previousPost.data.title }}</strong>
+      </a>
+    </li>
+    {{ /if }}
+
+    {{- set nextPost = search.nextPage(url, "type=post") }}
+    {{- if nextPost }}
+    <li class="pagination-next">
+      <a href="{{ nextPost.data.url }}" rel="next">
+        <span>{{ i18n.nav.next_post }}</span>
+        <strong>{{ nextPost.data.title }}</strong>
+      </a>
+    </li>
+    {{ /if }}
+  </ul>
+</nav>

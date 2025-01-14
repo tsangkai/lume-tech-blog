@@ -1,0 +1,8 @@
+---
+layout: layouts/base.vto
+---
+<h1>
+  {{ title }}: # {{ tag }}
+</h1>
+
+{{ include "templates/post-list.vto" { postslist: search.pages(search_query, "date=desc") } }}

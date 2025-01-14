@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="{{ metas.lang }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ it.title || metas.title }} - {{ metas.site }}</title>
+
+    <meta name="supported-color-schemes" content="light dark">
+    <meta name="theme-color" content="hsl(220, 20%, 100%)" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="hsl(220, 20%, 10%)" media="(prefers-color-scheme: dark)">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="{{ metas.site }}">
+    <link rel="alternate" href="/feed.json" type="application/json" title="{{ metas.site }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    {{ it.extra_head || "" }}
+  </head>
+
+  <body class="container">
+
+    <div class="navbar">
+      <a href="/" class="navbar-home">
+        <strong>{{ metas.site }}</strong>
+      </a>
+
+      <div class="navbar-link">
+      {{- for entry of search.pages("menu.visible=true", "menu.order") }}
+        <a href="{{ entry.data.url }}"{{ if entry.data.url == url }} aria-current="page"{{ /if }}>
+          {{ entry.data.menu.title || entry.data.title }}
+        </a>
+      {{ /for }}
+      {{- for link of it.menu_links }}
+        <a href="{{ link.href }}">
+          {{ link.text }}
+        </a>
+      {{ /for }}
+      </div>
+    </div>
+
+    <div class="main">
+      {{ content }}
+    </div>
+
+    <div class="footer">
+      <p>
+        contact me: tsangkai.chang [at] gmail [dot] com
+      </p>
+
+      <p>
+          last modified on: {{ date |> date('DATE') }}
+      </p>
+    </div>
+
+    <!-- Current page: {{ url }} -->
+  </body>
+</html>
