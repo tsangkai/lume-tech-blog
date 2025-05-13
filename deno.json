@@ -24,5 +24,13 @@
       "./_site",
       "./_bin"
     ]
+  },
+  "deploy": {
+    "project": "abb30cf7-5a11-47ac-84c7-7dd60f7f7c59",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "serve.ts"
   }
 }

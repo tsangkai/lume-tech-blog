@@ -85,8 +85,62 @@ For the first order derivative \\( \dot{\xi}(t) \\), we can use the relation
 
 ## White-Noise-on-Jerk (WNOJ) Motion Prior
 
-The white-noise-on-jerk prior assumes that the third derivative of \\( \xi(t) \\) follows a white noise. This part of derivation can be found in [Tang2019].
- 
+The white-noise-on-jerk prior assumes that the third derivative of \\( \xi(t) \\) follows a white noise. Therefore, the linear stochastic differential equation can be formulated with
+```math
+      \gamma(t) =
+      \begin{bmatrix}
+         \xi(t) \\
+         \dot{\xi}(t) \\
+         \ddot{\xi}(t)
+      \end{bmatrix},
+      \quad
+       A =
+      \begin{bmatrix}
+         0 & I & 0 \\
+         0 & 0 & I \\
+         0 & 0 & 0
+      \end{bmatrix},
+      \quad
+      F =
+      \begin{bmatrix}
+        0 \\
+        0 \\
+        I
+      \end{bmatrix}.
+```
+
+With the model determined, the state transition matrix \\( \Phi \\) is given by
+```math
+      \Phi(\Delta t) =
+      \begin{bmatrix}
+         I & \Delta t I & \frac{1}{2}\Delta t^2 I \\
+         0 & I & \Delta t I \\
+         0 & 0 & I
+      \end{bmatrix}.
+```
+
+The covariance matrix \\( Q \\) is given by
+```math
+      Q(\Delta t) =
+      \begin{bmatrix}
+         \frac{1}{20} \Delta t^5 Q_c & \frac{1}{8} \Delta t^4 Q_c  & \frac{1}{6} \Delta t^3 Q_c  \\
+          \frac{1}{8} \Delta t^4 Q_c & \frac{1}{3} \Delta t^3 Q_c  & \frac{1}{2} \Delta t^2 Q_c  \\
+          \frac{1}{6} \Delta t^3 Q_c & \frac{1}{2} \Delta t^2 Q_c  & \Delta t Q_c
+      \end{bmatrix},
+```
+with the inverse
+```math
+      Q^{-1}(\Delta t) =
+      \begin{bmatrix}
+          720 \Delta t^{-5} Q^{-1}_c & -360 \Delta t^{-4} Q^{-1}_c & 60 \Delta t^{-3} Q^{-1}_c \\
+         -360 \Delta t^{-4} Q^{-1}_c &  192 \Delta t^{-3} Q^{-1}_c & -36 \Delta t^{-2} Q^{-1}_c \\
+           60 \Delta t^{-3} Q^{-1}_c &  -36 \Delta t^{-2} Q^{-1}_c & 9 \Delta t^{-1} Q^{-1}_c
+      \end{bmatrix}.
+```
+\\( Q_c \\) is the power spectral density matrix of the white noise.
+
+This derivation can be found in [Tang2019].
+
 # Reference
 
 [Barfoot2022] T. D. Barfoot, *State Estimation for Robotics*, 2022.
