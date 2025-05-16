@@ -78,16 +78,16 @@ In point-to-plane ICP, the second step is formulated as $$
       \min_{T \in SE(3)} \sum_{i}||  n_i^{\mathsf{T}} \left(T(s_i) - d_i \right) ||^2.
    $$
 \\( s_i \\) and \\( d_i \\) denote the 3d point of the $i$th correspondence pair
-in the source point cloud and the target point cloud respectively.
+in the source point cloud and the target point cloud respectively, and \\( n_i \\) denotes the normal vector of point \\( d_i \\).
 
-With \\( f(T) = n_i^{\mathsf{T}} \left(T(s_i) - d_i \right) \\), we can first
-observe \\( f = h \circ g \\), with $$
+With \\( f_i(T) = n_i^{\mathsf{T}} \left(T(s_i) - d_i \right) \\), we can first
+observe \\( f_i = h_i \circ g_i \\), with $$
       g_i(T) = T(s_i) - d_i, \quad h_i(v) = n_i^{\mathsf{T}} v.
    $$
 
 Based on [Sola2018], we have
 ```math
-J^f_T = J^h_{g(T)} J^g_{T} = n_i^{\mathsf{T}} 
+J^{f_i}_T = J^{h_i}_{g_i(T)} J^{g_i}_{T} = n_i^{\mathsf{T}}
 \begin{bmatrix}
    R & -R [t]_{\times}
 \end{bmatrix},
