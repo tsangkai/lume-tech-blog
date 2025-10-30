@@ -1,7 +1,6 @@
 import date, { Options as DateOptions } from "lume/plugins/date.ts";
 import postcss from "lume/plugins/postcss.ts";
 import terser from "lume/plugins/terser.ts";
-import prism, { Options as PrismOptions } from "lume/plugins/prism.ts";
 import basePath from "lume/plugins/base_path.ts";
 import slugifyUrls from "lume/plugins/slugify_urls.ts";
 import resolveUrls from "lume/plugins/resolve_urls.ts";
@@ -14,11 +13,16 @@ import toc from "https://deno.land/x/lume_markdown_plugins@v0.5.0/toc.ts";
 import image from "https://deno.land/x/lume_markdown_plugins@v0.5.0/image.ts";
 import footnotes from "https://deno.land/x/lume_markdown_plugins@v0.5.0/footnotes.ts";
 import katex from "lume/plugins/katex.ts";
+import prism from "lume/plugins/prism.ts";
+
+import "npm:prismjs@1.29.0/components/prism-git.js";
+import "npm:prismjs@1.29.0/components/prism-c.js";
+import "npm:prismjs@1.29.0/components/prism-cpp.js";
+
 
 import type { Page, Site } from "lume/core.ts";
 
 export interface Options {
-  prism?: Partial<PrismOptions>;
   date?: Partial<DateOptions>;
   pagefind?: Partial<PagefindOptions>;
 }
@@ -48,16 +52,21 @@ export default function (options: Options = {}) {
             {
               left: "\\begin{equation}",
               right: "\\end{equation}",
-              display: true
+              display: true,
             },
             { left: "\\begin{align}", right: "\\end{align}", display: true },
-            { left: "\\begin{alignat}", right: "\\end{alignat}", display: true },
+            {
+              left: "\\begin{alignat}",
+              right: "\\end{alignat}",
+              display: true,
+            },
             { left: "\\begin{gather}", right: "\\end{gather}", display: true },
             { left: "\\begin{CD}", right: "\\end{CD}", display: true },
-            { left: "\\[", right: "\\]", display: true }
+            { left: "\\[", right: "\\]", display: true },
           ],
-        }
+        },
       ))
+      .use(prism())
       .use(feed({
         output: ["/feed.xml", "/feed.json"],
         query: "type=post",

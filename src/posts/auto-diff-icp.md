@@ -41,7 +41,7 @@ We first have to define some Lie group classes to characterize varaibles, the tr
 There are 3 types of Lie groups in \\( f(T) \\), including \\( \mathbb{R} \\), \\( \mathbb{R}^3 \\), and \\( SE(3) \\).
 As an example, the class of \\( SE(3) \\) along with some operations can be easily defined as
 
-``` cpp
+```cpp
 namespace lie {
 
 struct SE3 {
@@ -74,7 +74,7 @@ variables come with gradients while constants don't.
 
 The sample code looks like
 
-``` cpp
+```cpp
 namespace autoDiff {
 
 template <class Value, int N> struct Variable {
@@ -100,7 +100,7 @@ Take the first operation in \\( f(T) \\) as an example. With \\( f_1(T) = T(s_i)
 want to get the gradient of \\( f_1 \\) with respect to \\( T \\). In this case, \\( f_1 \\) is also a
 `Variable`, and its `N` will be the dimension of `T`.
 
-``` cpp
+```cpp
 namespace autoDiff {
 
 template <int N>
@@ -136,7 +136,7 @@ struct IcpResidualFunctor {
     // the second template parameter: the dimesion of the variable
     autoDiff::Variable<lie::R1, lie::SE3::Dim>
     operator()(const lie::SE3 &transform) const {
-        const autoDiff::Variable<lie::SE3, lie::SE3::Dim> transformVariable(
+        const auto transformVariable = autoDiff::Variable<lie::SE3, lie::SE3::Dim>(
             transform);
         return autoDiff::dot(transformVariable * source_ - target_, normal_);
     }
@@ -159,8 +159,8 @@ to get the function value and gradient at once.
 ``` cpp
 auto const icpResidualFunctor =
     IcpResidualFunctor{sourcePointCloud.points[sourceIdx],
-                        targetPointCloud.points[targetIdx],
-                        targetPointCloud.normals[targetIdx]};
+                       targetPointCloud.points[targetIdx],
+                       targetPointCloud.normals[targetIdx]};
 auto result = icpResidualFunctor(T);
 
 auto const &graident = result.grad;
